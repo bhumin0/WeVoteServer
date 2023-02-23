@@ -4,7 +4,7 @@
 
 import json
 from django.test import Client, TestCase
-from voter.models import Voter
+from voter.models import VoterPlan
 
 #file path: /workspaces/WeVoteServer/apis_v1/tests/test_views_voter_plan_list_retrieve
 
@@ -20,7 +20,7 @@ class WeVoteAPIsV1TestsVoterPlanListRetrieve(TestCase):
         self.client = Client()
 
         # Creating a voter
-        self.voter_plan = Voter.objects.create(
+        self.voter_plan = VoterPlan.objects.create(
             google_civic_election_id=1234,
             state_code="CA",
             voter_display_name="Joe Doe",
@@ -34,7 +34,7 @@ class WeVoteAPIsV1TestsVoterPlanListRetrieve(TestCase):
 
     # Testing to see if multiple voters will pop up with the same civic election id
     def test_number_of_voter_plans(self):
-        Voter.objects.create(
+        VoterPlan.objects.create(
             google_civic_election_id=1234,
             state_code="HI",
             voter_display_name="Jae Doe",
